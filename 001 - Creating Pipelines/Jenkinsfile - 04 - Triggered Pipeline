@@ -1,0 +1,17 @@
+pipeline {
+    agent { 
+		docker { 
+			image 'alpine:latest' 
+		}
+	}
+    triggers {
+      pollSCM '* * * * *'
+    }
+    stages {
+        stage('build') {
+            steps {
+                sh 'cat /etc/alpine-release'
+            }
+        }
+    }
+}
