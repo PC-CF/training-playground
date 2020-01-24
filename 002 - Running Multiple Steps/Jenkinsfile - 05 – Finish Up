@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                echo "$( RANDOM % 2 )"
+                sh "exit \$((RANDOM % 2))"
             }
         }
     }
