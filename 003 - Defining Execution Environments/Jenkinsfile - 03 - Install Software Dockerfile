@@ -1,0 +1,12 @@
+pipeline {
+    agent { 
+	}
+    stages {
+        stage('build') {
+            steps {
+            	echo "Don't install curl here!"
+                sh "curl www.google.com"
+            }
+        }
+    }
+}
