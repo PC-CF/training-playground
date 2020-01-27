@@ -1,0 +1,14 @@
+pipeline {
+    agent { 
+		docker { 
+			image 'alpine:latest' 
+		}
+	}
+    stages {
+        stage('build') {
+            steps {
+                echo "$NOTIFICATION_EMAIL"
+            }
+        }
+    }
+}

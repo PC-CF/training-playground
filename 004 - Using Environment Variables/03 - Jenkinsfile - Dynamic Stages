@@ -1,0 +1,19 @@
+pipeline {
+    agent { 
+		docker { 
+			image 'alpine:latest' 
+		}
+	}
+    stages {
+        stage('build') {
+            steps {
+                scripts {
+                	def buildConfigs = []
+                	buildConfigs.each{ buildConfig ->
+                		sh "echo '$buildConfig.name' && $buildConfig.command"
+					}
+                }
+            }
+        }
+    }
+}

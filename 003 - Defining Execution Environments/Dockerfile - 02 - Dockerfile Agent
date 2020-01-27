@@ -1,2 +1,0 @@
-FROM alpine:latest
-CMD if [ $ENV_VARIABLE != "Value for build" ]; then exit 1; fi
