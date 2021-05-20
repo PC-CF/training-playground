@@ -8,6 +8,7 @@ pipeline {
         stage('build') {
             steps {
             	sh "echo 'You need to install curl'"
+		sh "apk get curl"
                 sh "curl www.google.com"
             }
         }
