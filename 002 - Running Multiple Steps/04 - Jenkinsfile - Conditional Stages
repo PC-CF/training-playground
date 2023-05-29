@@ -1,9 +1,45 @@
 pipeline {
-    agent { 
-		docker { 
-			image 'alpine:latest' 
-		}
-	}
+    agent any
+    
     stages {
+        stage('User Input') {
+            steps {
+                script {
+                    def userInput = input message: 'Select a stage to execute (build/test):', parameters: [
+                        choice(choices: ['build', 'test'], description: 'Select a stage', name: 'stageSelection')
+                    ]
+                    
+                    def selectedStage = userInput['stageSelection']
+                    
+                    if (selectedStage == 'build') {
+                        buildStage()
+                    } else if (selectedStage == 'test') {
+                        testStage()
+                    } else {
+                        error "Invalid stage selection: ${selectedStage}"
+                    }
+                }
+            }
+        }
+    }
+}
+
+def buildStage() {
+    stage('Build') {
+        steps {
+            echo "Executing build stage..."
+            // Perform build operations here
+            echo "Build stage completed."
+        }
+    }
+}
+
+def testStage() {
+    stage('Test') {
+        steps {
+            echo "Executing test stage..."
+            // Perform test operations here
+            echo "Test stage completed."
+        }
     }
 }
